@@ -1,4 +1,4 @@
-from Npp import *   # Import Notepad++ PythonScript API
+from Npp import *   # pyright: ignore[reportMissingImports] # Import Notepad++ PythonScript API
 
 def validate_trader_buffer():
     seen_items = set()
@@ -6,7 +6,7 @@ def validate_trader_buffer():
     invalid_lines = []
 
     # Read the entire text from the current editor tab, split by lines
-    lines = editor.getText().splitlines()
+    lines = editor.getText().splitlines() # pyright: ignore[reportUndefinedVariable]
     for i, line in enumerate(lines):
         stripped = line.strip()     # Remove leading/trailing spaces
 
@@ -40,23 +40,23 @@ def validate_trader_buffer():
             else:
                 seen_items.add(classname)
 
-    console.show()
-    console.clear()
+    console.show() # pyright: ignore[reportUndefinedVariable]
+    console.clear() # pyright: ignore[reportUndefinedVariable]
     
     # Print results
     if invalid_lines or duplicates:
-        console.write("Validation Failed.\n\n")
+        console.write("Validation Failed.\n\n") # pyright: ignore[reportUndefinedVariable]
         if invalid_lines:
-            console.write("Lines with wrong number of commas (should be 3):\n")
+            console.write("Lines with wrong number of commas (should be 3):\n") # pyright: ignore[reportUndefinedVariable]
             for ln, content, count in invalid_lines:
-                console.write("  Line {}: {} (commas: {})\n".format(ln, content, count))
-            console.write("\n")
+                console.write("  Line {}: {} (commas: {})\n".format(ln, content, count)) # pyright: ignore[reportUndefinedVariable]
+            console.write("\n") # pyright: ignore[reportUndefinedVariable]
         if duplicates:
-            console.write("Duplicate item classnames found:\n")
+            console.write("Duplicate item classnames found:\n") # pyright: ignore[reportUndefinedVariable]
             for ln, classname in duplicates:
-                console.write("  Line {}: {}\n".format(ln, classname))
+                console.write("  Line {}: {}\n".format(ln, classname)) # pyright: ignore[reportUndefinedVariable]
     else:
-        console.write("Validation passed: No issues found.\n")
+        console.write("Validation passed: No issues found.\n") # pyright: ignore[reportUndefinedVariable]
 
 # Run the validation when the script is executed
 validate_trader_buffer()
